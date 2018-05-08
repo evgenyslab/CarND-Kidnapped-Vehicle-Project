@@ -111,7 +111,6 @@ int main()
         	}
 
 		  // Update the weights and resample
-            std::cout << noisy_observations.size() << "\n";
 		  pf.updateWeights(sensor_range, sigma_landmark, noisy_observations, map);
 		  pf.resample();
 

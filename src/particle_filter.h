@@ -29,21 +29,20 @@ struct Particle {
 class ParticleFilter {
 	
 	// Number of particles to draw
-	int num_particles; 
+	uint num_particles;
 	
-	
-	
+
 	// Flag, if filter is initialized
 	bool is_initialized;
 	
+	// random number generator available to all methods:
+	std::default_random_engine generator;
+
+public:
+
 	// Vector of weights of all particles
 	std::vector<double> weights;
 
-	// random number generator:
-	std::default_random_engine generator;
-	
-public:
-	
 	// Set of current particles
 	std::vector<Particle> particles;
 
@@ -82,6 +81,7 @@ public:
 	 * @param predicted Vector of predicted landmark observations
 	 * @param observations Vector of landmark observations
 	 */
+  // modified to make it easier to use.
 	void dataAssociation(std::vector<Map::single_landmark_s> map_locations, std::vector<LandmarkObs>& observations);
 	
 	/**
@@ -105,6 +105,7 @@ public:
 	 * Set a particles list of associations, along with the associations calculated world x,y coordinates
 	 * This can be a very useful debugging tool to make sure transformations are correct and assocations correctly connected
 	 */
+  // did not use.
 	Particle SetAssociations(Particle& particle, const std::vector<int>& associations,
 		                     const std::vector<double>& sense_x, const std::vector<double>& sense_y);
 
